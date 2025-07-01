@@ -38,3 +38,13 @@ export function addDocumentLinks(
     return match;
   });
 }
+
+export async function sendChat(messages: any[], model: string) {
+  const response = await fetch("http://localhost:8080/chat", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ messages, model }),
+  });
+  if (!response.ok) throw new Error("Chat API error");
+  return response.json();
+}

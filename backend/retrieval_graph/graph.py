@@ -8,7 +8,7 @@ conducting research, and formulating responses.
 
 from typing import Any, Literal, TypedDict, cast
 
-from langchain_core.messages import BaseMessage
+from langchain_core.messages import BaseMessage, HumanMessage, AIMessage, SystemMessage, ToolMessage, FunctionMessage
 from langchain_core.runnables import RunnableConfig
 from langgraph.graph import END, START, StateGraph
 
@@ -16,6 +16,8 @@ from backend.retrieval_graph.configuration import AgentConfiguration
 from backend.retrieval_graph.researcher_graph.graph import graph as researcher_graph
 from backend.retrieval_graph.state import AgentState, InputState, Router
 from backend.utils import format_docs, load_chat_model
+from pydantic import BaseModel
+from pydantic_ai import Agent
 
 
 async def analyze_and_route_query(
@@ -41,14 +43,34 @@ async def analyze_and_route_query(
     structured_output_kwargs = (
         {"method": "function_calling"} if "openai" in configuration.query_model else {}
     )
-    model = load_chat_model(configuration.query_model).with_structured_output(
-        Router, **structured_output_kwargs
-    )
-    messages = [
-        {"role": "system", "content": configuration.router_system_prompt}
-    ] + state.messages
-    response = cast(Router, await model.ainvoke(messages))
-    return {"router": response}
+    messages = []
+    for m in state.messages:
+        if hasattr(m, 'role') and hasattr(m, 'content'):
+            messages.append({"role": m.role, "content": m.content})
+
+    if "google_genai" in configuration.query_model:
+        class RouterModel(BaseModel):
+            logic: str
+            type: Literal["more-info", "langchain", "general"]
+        agent = Agent(
+            configuration.query_model.replace("google_genai/", "google-gla:"),
+            output_type=RouterModel,
+            system_prompt=configuration.router_system_prompt,
+        )
+        # Fallback: Use only the last user message as a string for Gemini
+        user_message = ""
+        for m in reversed(state.messages):
+            if isinstance(m, HumanMessage):
+                user_message = m.content
+                break
+        response = await agent.run(user_message)
+        return {"router": Router(logic=response.output.logic, type=response.output.type)}
+    else:
+        model = load_chat_model(configuration.query_model).with_structured_output(
+            Router, **structured_output_kwargs
+        )
+        response = cast(Router, await model.ainvoke(messages))
+        return {"router": response}
 
 
 def route_query(
@@ -137,29 +159,38 @@ async def create_research_plan(
         dict[str, list[str]]: A dictionary with a 'steps' key containing the list of research steps.
     """
 
-    class Plan(TypedDict):
-        """Generate research plan."""
-
+    class PlanModel(BaseModel):
         steps: list[str]
 
     configuration = AgentConfiguration.from_runnable_config(config)
     structured_output_kwargs = (
         {"method": "function_calling"} if "openai" in configuration.query_model else {}
     )
-    model = load_chat_model(configuration.query_model).with_structured_output(
-        Plan, **structured_output_kwargs
-    )
-    messages = [
-        {"role": "system", "content": configuration.research_plan_system_prompt}
-    ] + state.messages
-    response = cast(
-        Plan, await model.ainvoke(messages, {"tags": ["langsmith:nostream"]})
-    )
-    return {
-        "steps": response["steps"],
-        "documents": "delete",
-        "query": state.messages[-1].content,
-    }
+    messages = []
+    for m in state.messages:
+        if hasattr(m, 'role') and hasattr(m, 'content'):
+            messages.append({"role": m.role, "content": m.content})
+
+    if "google_genai" in configuration.query_model:
+        agent = Agent(
+            configuration.query_model.replace("google_genai/", "google-gla:"),
+            output_type=PlanModel,
+            system_prompt=configuration.research_plan_system_prompt,
+        )
+        # Fallback: Use only the last user message as a string for Gemini
+        user_message = ""
+        for m in reversed(state.messages):
+            if isinstance(m, HumanMessage):
+                user_message = m.content
+                break
+        response = await agent.run(user_message)
+        return {"steps": response.output.steps}
+    else:
+        model = load_chat_model(configuration.query_model).with_structured_output(
+            PlanModel, **structured_output_kwargs
+        )
+        response = cast(PlanModel, await model.ainvoke(messages, {"tags": ["langsmith:nostream"]}))
+        return {"steps": response.steps}
 
 
 async def conduct_research(state: AgentState) -> dict[str, Any]:

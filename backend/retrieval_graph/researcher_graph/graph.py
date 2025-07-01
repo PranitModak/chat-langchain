@@ -11,11 +11,14 @@ from langchain_core.runnables import RunnableConfig
 from langgraph.constants import Send
 from langgraph.graph import END, START, StateGraph
 from typing_extensions import TypedDict
+from langchain_core.messages import HumanMessage, AIMessage, SystemMessage, ToolMessage, FunctionMessage
 
 from backend import retrieval
 from backend.retrieval_graph.configuration import AgentConfiguration
 from backend.retrieval_graph.researcher_graph.state import QueryState, ResearcherState
 from backend.utils import load_chat_model
+from pydantic_ai import Agent
+from pydantic import BaseModel
 
 
 async def generate_queries(
@@ -33,24 +36,33 @@ async def generate_queries(
         dict[str, list[str]]: A dictionary with a 'queries' key containing the list of generated search queries.
     """
 
-    class Response(TypedDict):
-        queries: list[str]
-
     configuration = AgentConfiguration.from_runnable_config(config)
     structured_output_kwargs = (
         {"method": "function_calling"} if "openai" in configuration.query_model else {}
     )
-    model = load_chat_model(configuration.query_model).with_structured_output(
-        Response, **structured_output_kwargs
-    )
-    messages = [
-        {"role": "system", "content": configuration.generate_queries_system_prompt},
-        {"role": "human", "content": state.question},
-    ]
-    response = cast(
-        Response, await model.ainvoke(messages, {"tags": ["langsmith:nostream"]})
-    )
-    return {"queries": response["queries"]}
+    if "google_genai" in configuration.query_model:
+        class ResponseModel(BaseModel):
+            queries: list[str]
+        agent = Agent(
+            configuration.query_model.replace("google_genai/", "google-gla:"),
+            output_type=ResponseModel,
+            system_prompt=configuration.generate_queries_system_prompt,
+        )
+        # Fallback: Use only the question string for Gemini
+        response = await agent.run(state.question)
+        return {"queries": response.output.queries}
+    else:
+        model = load_chat_model(configuration.query_model).with_structured_output(
+            ResponseModel, **structured_output_kwargs
+        )
+        messages = [
+            {"role": "system", "content": configuration.generate_queries_system_prompt},
+            {"role": "human", "content": state.question},
+        ]
+        response = cast(
+            ResponseModel, await model.ainvoke(messages, {"tags": ["langsmith:nostream"]})
+        )
+        return {"queries": response.queries}
 
 
 async def retrieve_documents(

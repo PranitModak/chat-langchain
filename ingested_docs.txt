@@ -1,0 +1,1800 @@
+--- Document 1 ---
+Source: https://terrain3d.readthedocs.io/en/stable/
+Title: Terrain3D Documentation — Terrain3D 1.0.1 documentation
+Content:
+Terrain3D Documentation — Terrain3D 1.0.1 documentation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            Terrain3D
+          
+
+
+
+
+
+
+
+
+
+
+
+
+About
+
+Games Using Terrain3D
+Press
+Authors
+License
+
+Getting Started
+
+Introduction
+Tutorial Videos
+Installation & Upgrades
+Supported Platforms
+Supported Renderers
+User Interface
+Keyboard Shortcuts
+Troubleshooting
+Getting Help
+
+Basic Usage
+
+Preparing Textures
+Texturing the Terrain
+Heightmaps
+Importing & Exporting Data
+Foliage Instancing
+Technical Tips
+Environment Tips
+
+Advanced Usage
+
+Collision
+Double Precision
+Navigation
+Occlusion Culling
+Programming Languages
+
+Development
+
+Nightly Builds
+Building from Source
+System Architecture
+Shader Design
+Control Map Format
+Data Format Changelog
+Contributing
+
+API
+
+All classes
+Variant types
+
+
+
+
+
+
+Terrain3D
+
+
+
+
+
+
+Terrain3D Documentation
+
+ View page source
+
+
+
+
+
+
+
+
+Terrain3D Documentation
+Terrain3D is a high performance, editable terrain system for Godot 4.
+Start with Introduction and the other pages in the Getting Started section in the left sidebar to learn how to use this system.
+
+Credit
+Developed for the Godot community by:
+
+
+Cory Petkovsek, Tokisan Games
+    
+
+Roope Palmroos, Outobugi Games
+   
+
+
+
+And the contribution team in Authors and displayed on github contributors.
+
+About
+
+Games Using Terrain3D
+Press
+Authors
+License
+
+
+
+Getting Started
+
+Introduction
+Tutorial Videos
+Installation & Upgrades
+Supported Platforms
+Supported Renderers
+User Interface
+Keyboard Shortcuts
+Troubleshooting
+Getting Help
+
+
+
+Basic Usage
+
+Preparing Textures
+Texturing the Terrain
+Heightmaps
+Importing & Exporting Data
+Foliage Instancing
+Technical Tips
+Environment Tips
+
+
+
+Advanced Usage
+
+Collision
+Double Precision
+Navigation
+Occlusion Culling
+Programming Languages
+
+
+
+Development
+
+Nightly Builds
+Building from Source
+System Architecture
+Shader Design
+Control Map Format
+Data Format Changelog
+Contributing
+
+
+
+API
+
+All classes
+Variant types
+Terrain3D
+Terrain3DAssets
+Terrain3DCollision
+Terrain3DData
+Terrain3DEditor
+Terrain3DInstancer
+Terrain3DMaterial
+Terrain3DMeshAsset
+Terrain3DRegion
+Terrain3DTextureAsset
+Terrain3DUtil
+
+
+
+
+
+
+
+
+
+Next 
+
+
+
+© Copyright 2025 Cory Petkovsek, Roope Palmroos, and Contributors.
+
+
+  Built with Sphinx using a
+    theme
+    provided by Read the Docs.
+
+--- Document 2 ---
+Source: https://terrain3d.readthedocs.io/en/latest/
+Title: Terrain3D Documentation — Terrain3D 1.1.0 documentation
+Content:
+Terrain3D Documentation — Terrain3D 1.1.0 documentation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            Terrain3D
+          
+
+
+
+
+
+
+
+
+
+
+
+
+About
+
+Games Using Terrain3D
+Press
+Authors
+License
+
+Getting Started
+
+Introduction
+Tutorial Videos
+Installation & Upgrades
+Supported Platforms
+Supported Renderers
+User Interface
+Keyboard Shortcuts
+Troubleshooting
+Getting Help
+
+Basic Usage
+
+Preparing Textures
+Texturing the Terrain
+Heightmaps
+Importing & Exporting Data
+Foliage Instancing
+Technical Tips
+Environment Tips
+
+Advanced Usage
+
+Collision
+Double Precision
+Navigation
+Occlusion Culling
+Programming Languages
+
+Development
+
+Nightly Builds
+Building from Source
+System Architecture
+Shader Design
+Control Map Format
+Data Format Changelog
+Contributing
+
+API
+
+All classes
+Variant types
+
+
+
+
+
+
+Terrain3D
+
+
+
+
+
+
+Terrain3D Documentation
+
+ View page source
+
+
+
+
+
+
+
+
+Terrain3D Documentation
+Terrain3D is a high performance, editable terrain system for Godot 4.
+Start with Introduction and the other pages in the Getting Started section in the left sidebar to learn how to use this system.
+
+Credit
+Developed for the Godot community by:
+
+
+Cory Petkovsek, Tokisan Games
+    
+
+Roope Palmroos, Outobugi Games
+   
+
+
+
+And the contribution team in Authors and displayed on github contributors.
+
+About
+
+Games Using Terrain3D
+Press
+Authors
+License
+
+
+
+Getting Started
+
+Introduction
+Tutorial Videos
+Installation & Upgrades
+Supported Platforms
+Supported Renderers
+User Interface
+Keyboard Shortcuts
+Troubleshooting
+Getting Help
+
+
+
+Basic Usage
+
+Preparing Textures
+Texturing the Terrain
+Heightmaps
+Importing & Exporting Data
+Foliage Instancing
+Technical Tips
+Environment Tips
+
+
+
+Advanced Usage
+
+Collision
+Double Precision
+Navigation
+Occlusion Culling
+Programming Languages
+
+
+
+Development
+
+Nightly Builds
+Building from Source
+System Architecture
+Shader Design
+Control Map Format
+Data Format Changelog
+Contributing
+
+
+
+API
+
+All classes
+Variant types
+Terrain3D
+Terrain3DAssets
+Terrain3DCollision
+Terrain3DData
+Terrain3DEditor
+Terrain3DInstancer
+Terrain3DMaterial
+Terrain3DMeshAsset
+Terrain3DRegion
+Terrain3DTextureAsset
+Terrain3DUtil
+
+
+
+
+
+
+
+
+
+Next 
+
+
+
+© Copyright 2025 Cory Petkovsek, Roope Palmroos, and Contributors.
+
+
+  Built with Sphinx using a
+    theme
+    provided by Read the Docs.
+
+--- Document 3 ---
+Source: https://terrain3d.readthedocs.io/en/1.0/
+Title: Terrain3D Documentation — Terrain3D 1.0.1 documentation
+Content:
+Terrain3D Documentation — Terrain3D 1.0.1 documentation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            Terrain3D
+          
+
+
+
+
+
+
+
+
+
+
+
+
+About
+
+Games Using Terrain3D
+Press
+Authors
+License
+
+Getting Started
+
+Introduction
+Tutorial Videos
+Installation & Upgrades
+Supported Platforms
+Supported Renderers
+User Interface
+Keyboard Shortcuts
+Troubleshooting
+Getting Help
+
+Basic Usage
+
+Preparing Textures
+Texturing the Terrain
+Heightmaps
+Importing & Exporting Data
+Foliage Instancing
+Technical Tips
+Environment Tips
+
+Advanced Usage
+
+Collision
+Double Precision
+Navigation
+Occlusion Culling
+Programming Languages
+
+Development
+
+Nightly Builds
+Building from Source
+System Architecture
+Shader Design
+Control Map Format
+Data Format Changelog
+Contributing
+
+API
+
+All classes
+Variant types
+
+
+
+
+
+
+Terrain3D
+
+
+
+
+
+
+Terrain3D Documentation
+
+ View page source
+
+
+
+
+
+
+
+
+Terrain3D Documentation
+Terrain3D is a high performance, editable terrain system for Godot 4.
+Start with Introduction and the other pages in the Getting Started section in the left sidebar to learn how to use this system.
+
+Credit
+Developed for the Godot community by:
+
+
+Cory Petkovsek, Tokisan Games
+    
+
+Roope Palmroos, Outobugi Games
+   
+
+
+
+And the contribution team in Authors and displayed on github contributors.
+
+About
+
+Games Using Terrain3D
+Press
+Authors
+License
+
+
+
+Getting Started
+
+Introduction
+Tutorial Videos
+Installation & Upgrades
+Supported Platforms
+Supported Renderers
+User Interface
+Keyboard Shortcuts
+Troubleshooting
+Getting Help
+
+
+
+Basic Usage
+
+Preparing Textures
+Texturing the Terrain
+Heightmaps
+Importing & Exporting Data
+Foliage Instancing
+Technical Tips
+Environment Tips
+
+
+
+Advanced Usage
+
+Collision
+Double Precision
+Navigation
+Occlusion Culling
+Programming Languages
+
+
+
+Development
+
+Nightly Builds
+Building from Source
+System Architecture
+Shader Design
+Control Map Format
+Data Format Changelog
+Contributing
+
+
+
+API
+
+All classes
+Variant types
+Terrain3D
+Terrain3DAssets
+Terrain3DCollision
+Terrain3DData
+Terrain3DEditor
+Terrain3DInstancer
+Terrain3DMaterial
+Terrain3DMeshAsset
+Terrain3DRegion
+Terrain3DTextureAsset
+Terrain3DUtil
+
+
+
+
+
+
+
+
+
+Next 
+
+
+
+© Copyright 2025 Cory Petkovsek, Roope Palmroos, and Contributors.
+
+
+  Built with Sphinx using a
+    theme
+    provided by Read the Docs.
+
+--- Document 4 ---
+Source: https://terrain3d.readthedocs.io/en/0.9.3/
+Title: Terrain3D Documentation — Terrain3D 0.9.3a documentation
+Content:
+Terrain3D Documentation — Terrain3D 0.9.3a documentation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            Terrain3D
+          
+
+
+
+
+
+
+
+
+
+
+
+
+About
+
+Games Using Terrain3D
+Press
+Authors
+License
+
+Getting Started
+
+Introduction
+Tutorial Videos
+Installation & Upgrades
+Supported Platforms
+Supported Renderers
+User Interface
+Troubleshooting
+Getting Help
+
+Basic Usage
+
+Preparing Textures
+Texturing the Terrain
+Heightmaps
+Importing & Exporting Data
+Foliage Instancing
+Tips
+
+Advanced Usage
+
+Collision
+Double Precision
+Navigation
+Occlusion Culling
+Programming Languages
+
+Development
+
+Nightly Builds
+Building from Source
+System Architecture
+Shader Design
+Control Map Format
+Data Format Changelog
+Contributing
+
+API
+
+All classes
+Nodes
+Resources
+Other objects
+
+
+
+
+
+
+Terrain3D
+
+
+
+
+
+
+Terrain3D Documentation
+
+ View page source
+
+
+
+
+
+
+
+
+Terrain3D Documentation
+Terrain3D is a high performance, editable terrain system for Godot 4.
+Start with Introduction and the other pages in the Getting Started section in the left sidebar to learn how to use this system.
+
+Credit
+Developed for the Godot community by:
+
+
+Cory Petkovsek, Tokisan Games
+    
+
+Roope Palmroos, Outobugi Games
+   
+
+
+
+And other contributors displayed on github contributors and in Authors.
+Geometry clipmap mesh code created by Mike J. Savage. Blog and repository code released under the MIT license per email communication with Mike.
+
+About
+
+Games Using Terrain3D
+Press
+Authors
+License
+
+
+
+Getting Started
+
+Introduction
+Tutorial Videos
+Installation & Upgrades
+Supported Platforms
+Supported Renderers
+User Interface
+Troubleshooting
+Getting Help
+
+
+
+Basic Usage
+
+Preparing Textures
+Texturing the Terrain
+Heightmaps
+Importing & Exporting Data
+Foliage Instancing
+Tips
+
+
+
+Advanced Usage
+
+Collision
+Double Precision
+Navigation
+Occlusion Culling
+Programming Languages
+
+
+
+Development
+
+Nightly Builds
+Building from Source
+System Architecture
+Shader Design
+Control Map Format
+Data Format Changelog
+Contributing
+
+
+
+API
+
+All classes
+Nodes
+Terrain3D
+
+
+Resources
+Terrain3DAssets
+Terrain3DMaterial
+Terrain3DMeshAsset
+Terrain3DRegion
+Terrain3DStorage
+Terrain3DTexture
+Terrain3DTextureAsset
+Terrain3DTextureList
+
+
+Other objects
+Terrain3DData
+Terrain3DEditor
+Terrain3DInstancer
+Terrain3DUtil
+
+
+
+
+
+
+
+
+
+Next 
+
+
+
+© Copyright 2024 Cory Petkovsek, Roope Palmroos, and Contributors.
+
+
+  Built with Sphinx using a
+    theme
+    provided by Read the Docs.
+
+--- Document 5 ---
+Source: https://terrain3d.readthedocs.io/en/0.9.2/
+Title: Terrain3D Documentation — Terrain3D 0.9.2 documentation
+Content:
+Terrain3D Documentation — Terrain3D 0.9.2 documentation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            Terrain3D
+          
+
+
+
+
+
+
+
+
+
+
+
+
+About
+
+Project Status
+Games Using Terrain3D
+Press
+Authors
+License
+
+Getting Started
+
+Tutorial Videos
+Installation & Upgrades
+Preparing Textures
+Texturing the Terrain
+Importing & Exporting Data
+Foliage Instancing
+Tips
+Troubleshooting
+Getting Help
+
+Advanced Usage
+
+Double Precision
+Integrating with Terrain3D
+Miscelaneous Features
+Mobile & Web Support
+Navigation
+Occlusion Culling
+
+Development
+
+Nightly Builds
+Building from Source
+System Architecture
+Shader Design
+Control Map Format
+Storage Format Changelog
+Contributing
+
+API
+
+All classes
+Nodes
+Resources
+Other objects
+
+
+
+
+
+
+Terrain3D
+
+
+
+
+
+
+Terrain3D Documentation
+
+ View page source
+
+
+
+
+
+
+
+
+Terrain3D Documentation
+Terrain3D is a high performance, editable terrain system for Godot 4.
+See Project Status for development progress.
+
+Usage
+Read the documentation in the Getting Started section, beginning with Installation & Upgrades.
+
+
+Credit
+Developed for the Godot community by:
+
+
+Cory Petkovsek, Tokisan Games
+    
+
+Roope Palmroos, Outobugi Games
+   
+
+
+
+And other contributors displayed on github contributors and in Authors.
+Geometry clipmap mesh code created by Mike J. Savage. Blog and repository code released under the MIT license per email communication with Mike.
+
+About
+
+Project Status
+Games Using Terrain3D
+Press
+Authors
+License
+
+
+
+Getting Started
+
+Tutorial Videos
+Installation & Upgrades
+Preparing Textures
+Texturing the Terrain
+Importing & Exporting Data
+Foliage Instancing
+Tips
+Troubleshooting
+Getting Help
+
+
+
+Advanced Usage
+
+Double Precision
+Integrating with Terrain3D
+Miscelaneous Features
+Mobile & Web Support
+Navigation
+Occlusion Culling
+
+
+
+Development
+
+Nightly Builds
+Building from Source
+System Architecture
+Shader Design
+Control Map Format
+Storage Format Changelog
+Contributing
+
+
+
+API
+
+All classes
+Nodes
+Terrain3D
+
+
+Resources
+Terrain3DAssets
+Terrain3DMaterial
+Terrain3DMeshAsset
+Terrain3DStorage
+Terrain3DTexture
+Terrain3DTextureAsset
+Terrain3DTextureList
+
+
+Other objects
+Terrain3DEditor
+Terrain3DInstancer
+Terrain3DUtil
+
+
+
+
+
+
+
+
+
+Next 
+
+
+
+© Copyright 2024 Cory Petkovsek, Roope Palmroos, and Contributors.
+
+
+  Built with Sphinx using a
+    theme
+    provided by Read the Docs.
+
+--- Document 6 ---
+Source: https://voxel-tools.readthedocs.io/en/stable/
+Title: Voxel Tools documentation
+Content:
+Voxel Tools documentation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ Voxel Tools documentation
+        
+
+
+
+
+
+
+
+Voxel Tools documentation
+
+
+
+
+
+Getting Voxel Tools
+
+
+
+Quick start
+
+
+
+Overview
+
+
+
+Terrain types
+
+
+
+Blocky terrains
+
+
+
+Smooth terrains
+
+
+
+Generators
+
+
+
+VoxelGeneratorGraph nodes
+
+
+
+Streams
+
+
+
+Instancing
+
+
+
+Editor
+
+
+
+Multiplayer
+
+
+
+Navigation
+
+
+
+Scripting
+
+
+
+Procedural generation
+
+
+
+Performance
+
+
+
+Module development
+
+
+
+Changelog
+
+
+
+ 
+
+
+Scripting API
+
+All classes
+
+FastNoise2
+
+VoxelAStarGrid3D
+
+VoxelBlockSerializer
+
+VoxelBlockyAttribute
+
+VoxelBlockyAttributeAxis
+
+VoxelBlockyAttributeCustom
+
+VoxelBlockyAttributeDirection
+
+VoxelBlockyAttributeRotation
+
+VoxelBlockyFluid
+
+VoxelBlockyLibrary
+
+VoxelBlockyLibraryBase
+
+VoxelBlockyModel
+
+VoxelBlockyModelCube
+
+VoxelBlockyModelEmpty
+
+VoxelBlockyModelFluid
+
+VoxelBlockyModelMesh
+
+VoxelBlockyType
+
+VoxelBlockyTypeLibrary
+
+VoxelBoxMover
+
+VoxelBuffer
+
+VoxelColorPalette
+
+VoxelDataBlockEnterInfo
+
+VoxelEngine
+
+VoxelGenerator
+
+VoxelGeneratorFlat
+
+VoxelGeneratorGraph
+
+VoxelGeneratorHeightmap
+
+VoxelGeneratorImage
+
+VoxelGeneratorMultipassCB
+
+VoxelGeneratorNoise
+
+VoxelGeneratorNoise2D
+
+VoxelGeneratorScript
+
+VoxelGeneratorWaves
+
+VoxelGraphFunction
+
+VoxelInstanceComponent
+
+VoxelInstanceGenerator
+
+VoxelInstanceLibrary
+
+VoxelInstanceLibraryItem
+
+VoxelInstanceLibraryMultiMeshItem
+
+VoxelInstanceLibrarySceneItem
+
+VoxelInstancer
+
+VoxelInstancerRigidBody
+
+VoxelLodTerrain
+
+VoxelMeshSDF
+
+VoxelMesher
+
+VoxelMesherBlocky
+
+VoxelMesherCubes
+
+VoxelMesherTransvoxel
+
+VoxelModifier
+
+VoxelModifierMesh
+
+VoxelModifierSphere
+
+VoxelNode
+
+VoxelRaycastResult
+
+VoxelSaveCompletionTracker
+
+VoxelStream
+
+VoxelStreamMemory
+
+VoxelStreamRegionFiles
+
+VoxelStreamSQLite
+
+VoxelStreamScript
+
+VoxelTerrain
+
+VoxelTerrainMultiplayerSynchronizer
+
+VoxelTool
+
+VoxelToolBuffer
+
+VoxelToolLodTerrain
+
+VoxelToolMultipassGenerator
+
+VoxelToolTerrain
+
+VoxelViewer
+
+VoxelVoxLoader
+
+ZN_FastNoiseLite
+
+ZN_FastNoiseLiteGradient
+
+ZN_SpotNoise
+
+ZN_ThreadedTask
+
+
+Serialization formats
+
+Voxel block format v1
+
+Voxel block format v2
+
+Voxel block format v3
+
+Voxel block format v4
+
+Compressed data format
+
+Instance block format v0
+
+Instance block format v1
+
+Region format v2
+
+Region format v3
+
+SQLite format v0
+
+SQLite format v1
+
+
+
+
+
+
+
+
+Voxel Tools documentation
+
+
+
+
+
+Voxel Tools documentation
+
+
+
+
+
+
+
+Voxel Tools documentation¶
+Voxel Tools is a C++ module for creating volumetric worlds in Godot Engine.
+Explore categories on the left to get started!
+
+Github repository
+License
+
+
+Note
+This module is under constant development. A lot of features are available and can be used for games, but some other parts still need work and can change, so it's possible some information is not well detailed yet.
+It is also a lot more technical than usual Godot 3D features. You may have to tinker with things, so having prior experience in 3D development is preferable.
+
+
+
+
+
+
+
+Next 
+
+
+
+
+
+
+  Built with MkDocs using a theme provided by Read the Docs.
+
+--- Document 7 ---
+Source: https://voxel-tools.readthedocs.io/en/latest/
+Title: Voxel Tools documentation
+Content:
+Voxel Tools documentation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ Voxel Tools documentation
+        
+
+
+
+
+
+
+
+Voxel Tools documentation
+
+
+
+
+
+Getting Voxel Tools
+
+
+
+Quick start
+
+
+
+Overview
+
+
+
+Blocky terrains
+
+
+
+Smooth terrains
+
+
+
+Generators
+
+
+
+VoxelGeneratorGraph nodes
+
+
+
+Streams
+
+
+
+Instancing
+
+
+
+Editor
+
+
+
+Multiplayer
+
+
+
+Navigation
+
+
+
+Scripting
+
+
+
+Procedural generation
+
+
+
+Performance
+
+
+
+Module development
+
+
+
+Changelog
+
+
+
+ 
+
+
+Scripting API
+
+All classes
+
+FastNoise2
+
+VoxelAStarGrid3D
+
+VoxelBlockSerializer
+
+VoxelBlockyAttribute
+
+VoxelBlockyAttributeAxis
+
+VoxelBlockyAttributeCustom
+
+VoxelBlockyAttributeDirection
+
+VoxelBlockyAttributeRotation
+
+VoxelBlockyFluid
+
+VoxelBlockyLibrary
+
+VoxelBlockyLibraryBase
+
+VoxelBlockyModel
+
+VoxelBlockyModelCube
+
+VoxelBlockyModelEmpty
+
+VoxelBlockyModelFluid
+
+VoxelBlockyModelMesh
+
+VoxelBlockyType
+
+VoxelBlockyTypeLibrary
+
+VoxelBoxMover
+
+VoxelBuffer
+
+VoxelColorPalette
+
+VoxelDataBlockEnterInfo
+
+VoxelEngine
+
+VoxelFormat
+
+VoxelGenerator
+
+VoxelGeneratorFlat
+
+VoxelGeneratorGraph
+
+VoxelGeneratorHeightmap
+
+VoxelGeneratorImage
+
+VoxelGeneratorMultipassCB
+
+VoxelGeneratorNoise
+
+VoxelGeneratorNoise2D
+
+VoxelGeneratorScript
+
+VoxelGeneratorWaves
+
+VoxelGraphFunction
+
+VoxelInstanceComponent
+
+VoxelInstanceGenerator
+
+VoxelInstanceLibrary
+
+VoxelInstanceLibraryItem
+
+VoxelInstanceLibraryMultiMeshItem
+
+VoxelInstanceLibrarySceneItem
+
+VoxelInstancer
+
+VoxelInstancerRigidBody
+
+VoxelLodTerrain
+
+VoxelMeshSDF
+
+VoxelMesher
+
+VoxelMesherBlocky
+
+VoxelMesherCubes
+
+VoxelMesherTransvoxel
+
+VoxelModifier
+
+VoxelModifierMesh
+
+VoxelModifierSphere
+
+VoxelNode
+
+VoxelRaycastResult
+
+VoxelSaveCompletionTracker
+
+VoxelStream
+
+VoxelStreamMemory
+
+VoxelStreamRegionFiles
+
+VoxelStreamSQLite
+
+VoxelStreamScript
+
+VoxelTerrain
+
+VoxelTerrainMultiplayerSynchronizer
+
+VoxelTool
+
+VoxelToolBuffer
+
+VoxelToolLodTerrain
+
+VoxelToolMultipassGenerator
+
+VoxelToolTerrain
+
+VoxelViewer
+
+VoxelVoxLoader
+
+ZN_FastNoiseLite
+
+ZN_FastNoiseLiteGradient
+
+ZN_SpotNoise
+
+ZN_ThreadedTask
+
+
+Serialization formats
+
+Voxel block format v1
+
+Voxel block format v2
+
+Voxel block format v3
+
+Voxel block format v4
+
+Compressed data format
+
+Instance block format v0
+
+Instance block format v1
+
+Region format v2
+
+Region format v3
+
+SQLite format v0
+
+SQLite format v1
+
+
+
+
+
+
+
+
+Voxel Tools documentation
+
+
+
+
+
+Voxel Tools documentation
+
+
+
+
+
+
+
+Voxel Tools documentation¶
+Voxel Tools is a C++ module for creating volumetric worlds in Godot Engine.
+Explore categories on the left to get started!
+
+Github repository
+License
+
+
+Note
+This module is under constant development. A lot of features are available and can be used for games, but some other parts still need work and can change, so it's possible some information is not well detailed yet.
+It is also a lot more technical than usual Godot 3D features. You may have to tinker with things, so having prior experience in 3D development is preferable.
+
+
+
+
+
+
+
+Next 
+
+
+
+
+
+
+  Built with MkDocs using a theme provided by Read the Docs.
+

@@ -11,6 +11,40 @@ The app leverages LangChain and LangGraph's streaming support and async API to u
 
 ## Running locally
 
+BHakk
+
+sudo npm install -g yarn && cd frontend && yarn install
+
+Usage Options:
+1. Web Scraping (Original)
+python backend/ingest.py --mode web --wipe
+Run
+2. Local Sphinx Build
+python backend/ingest.py --mode sphinx --wipe
+Run
+Clones repos and builds docs locally using Sphinx/MkDocs
+Uses ReadTheDocsLoader on the built HTML
+More reliable than web scraping
+3. Direct Repo Access with gitingest
+python backend/ingest.py --mode gitingest --wipe
+Run
+Uses gitingest to extract documentation directly from Git repos
+Gets raw source files (Markdown, reStructuredText, etc.)
+No web scraping or building needed
+Features:
+Repository configurations for each project (Godot, Terrain3D, Voxel Tools)
+Automatic dependency installation for Sphinx builds
+Error handling for each repo
+Separate output files for each mode (ingested_docs_web.txt, ingested_docs_sphinx.txt, ingested_docs_gitingest.txt)
+Method tracking in metadata
+Next Steps:
+You can now test all three approaches and compare:
+Quality of extracted content
+Speed of ingestion
+Reliability of each method
+Completeness of documentation coverage
+Try each mode and see which works best for your use case!
+
 This project is now deployed using [LangGraph Cloud](https://langchain-ai.github.io/langgraph/cloud/), which means you won't be able to run it locally (or without a LangGraph Cloud account). If you want to run it WITHOUT LangGraph Cloud, please use the code and documentation from this [branch](https://github.com/langchain-ai/chat-langchain/tree/langserve).
 
 > [!NOTE]

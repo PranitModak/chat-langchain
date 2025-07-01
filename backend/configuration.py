@@ -42,17 +42,17 @@ class BaseConfiguration:
         str,
         {"__template_metadata__": {"kind": "embeddings"}},
     ] = field(
-        default="openai/text-embedding-3-small",
+        default="google_genai/models/embedding-001",
         metadata={
             "description": "Name of the embedding model to use. Must be a valid embedding model name."
         },
     )
 
     retriever_provider: Annotated[
-        Literal["weaviate"],
+        Literal["chroma"],
         {"__template_metadata__": {"kind": "retriever"}},
     ] = field(
-        default="weaviate",
+        default="chroma",
         metadata={"description": "The vector store provider to use for retrieval."},
     )
 

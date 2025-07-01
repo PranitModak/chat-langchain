@@ -15,7 +15,7 @@ class AgentConfiguration(BaseConfiguration):
     # models
 
     query_model: str = field(
-        default="anthropic/claude-3-5-haiku-20241022",
+        default="google_genai/gemini-2.5-pro",
         metadata={
             "description": "The language model used for processing and refining queries. Should be in the form: provider/model-name."
         },
