@@ -9,21 +9,25 @@ packages = [{ include = "backend" }]
 [tool.poetry.dependencies]
 python = "^3.11"
 langchain = ">=0.3.0,<0.4.0"
-langsmith = ">=0.3.42" 
 langchain-google-genai = ">=2.1.2,<3.0.0"
 langchain-core = ">=0.3.10,<0.4.0"
 langchain-community = ">=0.3.0,<0.4.0"
-langchain-openai = ">=0.3.12,<0.4.0"
-langchain-anthropic = ">=0.3.10,<0.4.0"
-langchain-weaviate = ">=0.0.3,<0.1.0"
 langgraph = ">=0.4.5"
 beautifulsoup4 = "^4.12.2"
-weaviate-client = "^4.0.0"
 lxml = "^4.9.3"
 voyageai = "^0.1.4"
 pillow = "^10.2.0"
 # do not remove this, it's used for indexing
 psycopg2-binary = "^2.9.9"
+# Data validation and serialization
+pydantic = ">=2.0.0,<3.0.0"
+pydantic-ai = ">=0.1.0,<1.0.0"
+# Web framework
+fastapi = ">=0.100.0,<1.0.0"
+uvicorn = ">=0.20.0,<1.0.0"
+# Additional dependencies
+typing-extensions = ">=4.0.0,<5.0.0"
+uuid = ">=1.30.0,<2.0.0"
 
 [tool.poetry.group.dev.dependencies]
 langgraph-sdk = ">=0.1.61,<0.2.0"

@@ -8,7 +8,8 @@ from typing import Annotated, Any, Literal, Optional, Type, TypeVar
 from langchain_core.runnables import RunnableConfig, ensure_config
 
 MODEL_NAME_TO_RESPONSE_MODEL = {
-    "anthropic_claude_3_5_sonnet": "anthropic/claude-3-5-sonnet-20240620",
+    "google_genai_gemini_2_5_pro": "google_genai/gemini-2.5-pro",
+    "google_genai_gemini_2_5_flash": "google_genai/gemini-2.5-flash",
 }
 
 

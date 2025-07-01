@@ -1,1 +1,2 @@
-WEAVIATE_DOCS_INDEX_NAME = "LangChain_Combined_Docs_OpenAI_text_embedding_3_small"
+# ChromaDB collection name for storing documents
+CHROMA_COLLECTION_NAME = "docs"

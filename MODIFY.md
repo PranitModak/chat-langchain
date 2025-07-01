@@ -17,33 +17,25 @@ All of the operations in Chat LangChain are largely based around the vector stor
 
 There are two places the vector store is used:
 - **Ingestion**: The vector store is used to store the embeddings of every document used as context. Located in [`./backend/ingest.py`](./backend/ingest.py) you can easily modify the provider to use a different vector store.
-- **Retrieval**: The vector store is used to retrieve documents based on a user's query. Located at [`./backend/chain.py`](./backend/chain.py) you can easily modify the provider to use a different vector store.
+- **Retrieval**: The vector store is used to retrieve documents based on a user's query. Located at [`./backend/retrieval.py`](./backend/retrieval.py) you can easily modify the provider to use a different vector store.
 
 ### Steps
 
-For backend ingestion, locate the `ingest_docs` function. You'll want to modify where `client` and `vectorstore` are instantiated. Here's an example of the Weaviate instantiation:
+For backend ingestion, locate the `ingest_docs` function. You'll want to modify where the `vectorstore` is instantiated. Here's an example of the ChromaDB instantiation:
 
 ```python
-client = weaviate.Client(
-    url=WEAVIATE_URL,
-    auth_client_secret=weaviate.AuthApiKey(api_key=WEAVIATE_API_KEY),
-)
-vectorstore = Weaviate(
-    client=client,
-    index_name=WEAVIATE_DOCS_INDEX_NAME,
-    text_key="text",
-    embedding=embedding,
-    by_text=False,
-    attributes=["source", "title"],
+vectorstore = Chroma(
+    collection_name=CHROMA_COLLECTION_NAME,
+    embedding_function=embedding,
+    persist_directory="chroma_db"
 )
 ```
 
 To make transitioning as easy as possible, all you should do is:
 
-1. Delete the weaviate client instantiation.
-2. Replace the vector store instantiation with the new provider's instantiation. Remember to keep the variable name (`vectorstore`) the same. Since all LangChain vector stores are built on top of the same API, no other modifications should be necessary.
+1. Replace the vector store instantiation with the new provider's instantiation. Remember to keep the variable name (`vectorstore`) the same. Since all LangChain vector stores are built on top of the same API, no other modifications should be necessary.
 
-Finally, perform these same steps inside the [`./backend/chain.py`](./backend/chain.py) (inside the `get_retriever` function) file, and you're done!
+Finally, perform these same steps inside the [`./backend/retrieval.py`](./backend/retrieval.py) (inside the `make_chroma_retriever` function) file, and you're done!
 
 ## Record Manager
 
@@ -152,24 +144,24 @@ That't it!
 ## Embeddings
 
 Chat LangChain uses embeddings inside the ingestion script when storing documents in the vector store.
-Without modification, it defaults to use [OpenAI's embeddings model](https://python.langchain.com/docs/integrations/text_embedding/openai).
+Without modification, it defaults to use [Google Gemini's embeddings model](https://python.langchain.com/docs/integrations/text_embedding/google_genai).
 
 Changing this to the vector store of your choice is simple. First, find the `get_embeddings_model` function inside the [`./backend/ingest.py`](./backend/ingest.py) file. It looks something like this:
 
 ```python
 def get_embeddings_model() -> Embeddings:
-    return OpenAIEmbeddings(model="text-embedding-3-small", chunk_size=200)
+    return GoogleGenerativeAIEmbeddings(model="models/embedding-001")
 ```
 
-Then, simply swap out the `OpenAIEmbeddings` class for the model of your choice!
+Then, simply swap out the `GoogleGenerativeAIEmbeddings` class for the model of your choice!
 
-Here's an example of what that would look like if you wanted to use Mistral's embeddings model:
+Here's an example of what that would look like if you wanted to use OpenAI's embeddings model:
 
 ```python
-from langchain_mistralai import MistralAIEmbeddings
+from langchain_openai import OpenAIEmbeddings
 
 def get_embeddings_model() -> Embeddings:
-    return MistralAIEmbeddings(mistral_api_key="your-api-key")
+    return OpenAIEmbeddings(model="text-embedding-3-small", chunk_size=200)
 ```
 
 ## Prompts

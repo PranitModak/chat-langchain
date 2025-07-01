@@ -1,4 +1,4 @@
-"""Load html from files, clean up, split, ingest into Weaviate."""
+"""Load html from files, clean up, split, ingest into ChromaDB."""
 import logging
 import os
 import re

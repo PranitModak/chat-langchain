@@ -40,9 +40,7 @@ async def analyze_and_route_query(
         return {"router": state.router}
 
     configuration = AgentConfiguration.from_runnable_config(config)
-    structured_output_kwargs = (
-        {"method": "function_calling"} if "openai" in configuration.query_model else {}
-    )
+    structured_output_kwargs = {}
     messages = []
     for m in state.messages:
         if hasattr(m, 'role') and hasattr(m, 'content'):
@@ -163,9 +161,7 @@ async def create_research_plan(
         steps: list[str]
 
     configuration = AgentConfiguration.from_runnable_config(config)
-    structured_output_kwargs = (
-        {"method": "function_calling"} if "openai" in configuration.query_model else {}
-    )
+    structured_output_kwargs = {}
     messages = []
     for m in state.messages:
         if hasattr(m, 'role') and hasattr(m, 'content'):
@@ -189,7 +185,7 @@ async def create_research_plan(
         model = load_chat_model(configuration.query_model).with_structured_output(
             PlanModel, **structured_output_kwargs
         )
-        response = cast(PlanModel, await model.ainvoke(messages, {"tags": ["langsmith:nostream"]}))
+        response = cast(PlanModel, await model.ainvoke(messages))
         return {"steps": response.steps}
 
 
@@ -240,36 +236,62 @@ async def respond(
     This function formulates a comprehensive answer using the conversation history and the documents retrieved by the researcher.
 
     Args:
-        state (AgentState): The current state of the agent, including retrieved documents and conversation history.
-        config (RunnableConfig): Configuration with the model used to respond.
+        state (AgentState): The current state of the agent, including conversation history, router logic, and retrieved documents.
+        config (RunnableConfig): Configuration with the model used to generate the response.
 
     Returns:
-        dict[str, list[str]]: A dictionary with a 'messages' key containing the generated response.
+        dict[str, list[BaseMessage]]: A dictionary with a 'messages' key containing the generated response.
+
+    Behavior:
+        - Formats the retrieved documents for context.
+        - Constructs a system prompt that includes the router's logic and the formatted documents.
+        - Generates a comprehensive response using the language model.
     """
     configuration = AgentConfiguration.from_runnable_config(config)
     model = load_chat_model(configuration.response_model)
-    # TODO: add a re-ranker here
-    top_k = 20
-    context = format_docs(state.documents[:top_k])
-    prompt = configuration.response_system_prompt.format(context=context)
-    messages = [{"role": "system", "content": prompt}] + state.messages
+    system_prompt = configuration.response_system_prompt.format(
+        logic=state.router["logic"], docs=format_docs(state.documents)
+    )
+    messages = [{"role": "system", "content": system_prompt}] + state.messages
     response = await model.ainvoke(messages)
-    return {"messages": [response], "answer": response.content}
+    return {"messages": [response]}
 
 
 # Define the graph
+builder = StateGraph(AgentState)
 
+# Add nodes
+builder.add_node("analyze_and_route_query", analyze_and_route_query)
+builder.add_node("ask_for_more_info", ask_for_more_info)
+builder.add_node("respond_to_general_query", respond_to_general_query)
+builder.add_node("create_research_plan", create_research_plan)
+builder.add_node("conduct_research", conduct_research)
+builder.add_node("respond", respond)
 
-builder = StateGraph(AgentState, input=InputState, config_schema=AgentConfiguration)
-builder.add_node(create_research_plan)
-builder.add_node(conduct_research)
-builder.add_node(respond)
-
-builder.add_edge(START, "create_research_plan")
+# Add edges
+builder.add_edge(START, "analyze_and_route_query")
+builder.add_conditional_edges(
+    "analyze_and_route_query",
+    route_query,
+    {
+        "ask_for_more_info": "ask_for_more_info",
+        "respond_to_general_query": "respond_to_general_query",
+        "create_research_plan": "create_research_plan",
+    },
+)
+builder.add_edge("ask_for_more_info", END)
+builder.add_edge("respond_to_general_query", END)
 builder.add_edge("create_research_plan", "conduct_research")
-builder.add_conditional_edges("conduct_research", check_finished)
+builder.add_conditional_edges(
+    "conduct_research",
+    check_finished,
+    {
+        "conduct_research": "conduct_research",
+        "respond": "respond",
+    },
+)
 builder.add_edge("respond", END)
 
 # Compile into a graph object that you can invoke and deploy.
 graph = builder.compile()
-graph.name = "RetrievalGraph"
+graph.name = "ConversationalRetrievalGraph"

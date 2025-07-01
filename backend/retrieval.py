@@ -8,7 +8,7 @@ from langchain_core.runnables import RunnableConfig
 from langchain_community.vectorstores import Chroma
 
 from backend.configuration import BaseConfiguration
-from backend.constants import WEAVIATE_DOCS_INDEX_NAME
+from backend.constants import CHROMA_COLLECTION_NAME
 
 
 def make_text_encoder(model: str) -> Embeddings:
@@ -25,12 +25,12 @@ def make_chroma_retriever(
     configuration: BaseConfiguration, embedding_model: Embeddings
 ) -> Iterator[BaseRetriever]:
     store = Chroma(
-        collection_name="docs",
+        collection_name=CHROMA_COLLECTION_NAME,
         embedding_function=embedding_model,
         persist_directory="chroma_db"
         )
     search_kwargs = {**configuration.search_kwargs}
-        yield store.as_retriever(search_kwargs=search_kwargs)
+    yield store.as_retriever(search_kwargs=search_kwargs)
 
 
 @contextmanager

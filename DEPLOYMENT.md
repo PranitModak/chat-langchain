@@ -6,19 +6,17 @@ We recommend when deploying Chat LangChain, you use Vercel for the frontend, [La
 
 First, fork [chat-langchain](https://github.com/langchain-ai/chat-langchain) to your GitHub account.
 
-## Weaviate (Vector Store)
+## ChromaDB (Vector Store)
 
-We'll use Weaviate for our vector store. You can sign up for an account [here](https://console.weaviate.cloud/).
+This project uses ChromaDB as the vector store, which runs locally and doesn't require any external setup. The vector database is stored in the `chroma_db/` directory and is automatically created when you run the ingestion process.
 
-After creating an account click "Create Cluster". Follow the steps to create a new cluster. Once finished wait for the cluster to create, this may take a few minutes.
+For local development, no additional setup is required. The ChromaDB instance will be created automatically when you run:
 
-Once your cluster has been created you should see a few sections on the page. The first is the cluster URL. Save this as your `WEAVIATE_URL` environment variable.
+```bash
+python backend/ingest.py --mode web --wipe
+```
 
-Next, click "API Keys" and save the API key in the environment variable `WEAVIATE_API_KEY`.
-
-The final Weaviate environment variable is "WEAVIATE_INDEX_NAME". This is the name of the index you want to use. You can name it whatever you want, but for this example, we'll use "langchain".
-
-After this your vector store will be setup. We can now move onto the record manager.
+For production deployment, you may want to consider using a persistent storage solution or a managed ChromaDB service if you need to scale beyond local storage.
 
 ## Supabase (Record Manager)
 
@@ -63,11 +61,8 @@ Select "Environments" from the left-hand menu, and click "New environment". Ente
 When configuring, click "Add secret" and add the following secrets:
 
 ```
-OPENAI_API_KEY=
+GOOGLE_API_KEY=
 RECORD_MANAGER_DB_URL=
-WEAVIATE_API_KEY=
-WEAVIATE_INDEX_NAME=langchain
-WEAVIATE_URL=
 ```
 
 These should be the same secrets as were added to Vercel.
